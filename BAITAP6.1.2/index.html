@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sự kiện Halloween</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .nen {
+            width: 100vw;
+            height: 100vh;
+            background-image: url('img/zeNPpS.gif');
+            background-size: cover;
+            background-position: center;
+        }
+        .overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+        }
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .text1 a {
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            border-radius: 10px;
+        }
+        .text2 a {
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            border-radius: 10px;
+        }
+        .text3 a {
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            border-radius: 10px;
+        }
+        .text4 a {
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            border-radius: 10px;
+        }
+        .text5 a {
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <audio autoplay loop muted>
+        <source src="music/halloween-scary-music-421082.mp3" type="audio/mpeg">
+    </audio>
+    <div class="nen"></div>
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="text1"><a href="http://127.0.0.1:5500/contact.html">Giới thiệu</a></div>
+        <div class="text2"><a href="http://127.0.0.1:5500/gianhang.html">Gian hàng</a></div>
+        <div class="text3"><a href="http://127.0.0.1:5500/picture.html">Bộ sưu tập</a></div>
+        <div class="text4"><a href="http://127.0.0.1:5500/contact.html">Liên hệ</a></div>
+        <div class="text5"><a href="http://127.0.0.1:5500/dangky.html">Đăng ký tham gia</a></div>
+    </div>
+</body>
+
+</html>

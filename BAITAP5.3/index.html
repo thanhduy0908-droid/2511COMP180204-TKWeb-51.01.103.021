@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sản phẩm</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+
+<body>
+    <style>
+        .boxcontainer {
+            width: 700px;
+            display: inline-block;
+        }
+
+        .box1 {
+            border: 2px solid black;
+            width: 180px;
+            height: 220px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .box img {
+            width: 100%;
+            height: 120px;
+            margin-top: 20px;
+        }
+
+        .box3 {
+            width: inherit;
+            text-align: center;
+            position: absolute;
+            color: yellow;
+        }
+
+        .box4 {
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .boxcontainer1 {
+            width: 300px;
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 345px;
+        }
+    </style>
+    <div class="card" style="width: 18rem; border: white; display: inline-block;">
+        <div class="card-body">
+            <h5 class="card-title" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">
+                FIT-HCMUE Shop</h5>
+            <hr style-color="grey">
+            <h6 class="card-subtitle">Bring knowledge to everyone</h6>
+        </div>
+    </div>
+    <img src="img/istockphoto-1385509455-612x612.jpg" class="rounded float-end" style="width: 200px; height: 100px;">
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg" style="gap: 300px;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Trang chủ</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Sản phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Liên hệ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Hỏi đáp</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Tài khoản
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="search" style="display: inline-block;">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                        style="width: 215px;" />
+                    <button class="btn btn-outline-success" type="submit">Search...</button>
+                    <a href="#" style="color: white; margin-top: 5px; margin-left: 5px;"><span>English</span></a>
+                    <a href="#" style="color: white; margin-top: 5px; margin-left: 8px; word-wrap: normal;"><span>Tiếng&#160Việt</span></a>
+                </form>
+            </div>
+        </nav>
+    </nav>
+    <div class="boxcontainer">
+        <div class="box1">
+            <div class="box4">Iphone 14</div>
+            <div class="box img"><img src="img/t_m_18_1_3_2.webp"></div>
+            <div class="box3"><a href="http://127.0.0.1:5500/chitiet.html"><u>29,999,000 đ</u></a></div>
+        </div>
+        <div class="box1">
+            <div class="box4">Iphone 14</div>
+            <div class="box img"><img src="img/t_m_18_1_3_2.webp"></div>
+            <div class="box3"><a href="http://127.0.0.1:5500/chitiet.html"><u>29,999,000 đ</u></a></div>
+        </div>
+        <div class="box1">
+            <div class="box4">Iphone 14</div>
+            <div class="box img"><img src="img/t_m_18_1_3_2.webp"></div>
+            <div class="box3"><a href="http://127.0.0.1:5500/chitiet.html"><u>29,999,000 đ</u></a></div>
+        </div>
+        <div class="box1">
+            <div class="box4">Iphone 14</div>
+            <div class="box img"><img src="img/t_m_18_1_3_2.webp"></div>
+            <div class="box3"><a href="http://127.0.0.1:5500/chitiet.html"><u>29,999,000 đ</u></a></div>
+        </div>
+        <div class="box1">
+            <div class="box4">Iphone 14</div>
+            <div class="box img"><img src="img/t_m_18_1_3_2.webp"></div>
+            <div class="box3"><a href="http://127.0.0.1:5500/chitiet.html"><u>29,999,000 đ</u></a></div>
+        </div>
+        <div class="box1">
+            <div class="box4">Iphone 14</div>
+            <div class="box img"><img src="img/t_m_18_1_3_2.webp"></div>
+            <div class="box3"><a href="http://127.0.0.1:5500/chitiet.html"><u>29,999,000 đ</u></a></div>
+        </div>
+        <div class="box1">
+            <div class="box4">Iphone 14</div>
+            <div class="box img"><img src="img/t_m_18_1_3_2.webp"></div>
+            <div class="box3"><a href="http://127.0.0.1:5500/chitiet.html"><u>29,999,000 đ</u></a></div>
+        </div>
+    </div>
+    <div class="boxcontainer1">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                Giỏ hàng
+            </a>
+            <a href="#" class="list-group-item list-group-item-action"><img
+                    src="img/lovepik-shopping-cart-icon-png-image_401363020_wh1200.png"
+                    style="width: 50px;"></a>
+            <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                Tìm kiếm
+            </a>
+            <a href="#" class="list-group-item list-group-item-action"><input type="email" class="form-control"
+                    id="exampleFormControlInput1" placeholder="keyword"></a>
+            <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                Chủng loại
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">Điện thoại</a>
+            <a href="#" class="list-group-item list-group-item-action">Laptop</a>
+            <a href="#" class="list-group-item list-group-item-action">Tablet</a>
+            <a href="#" class="list-group-item list-group-item-action">Điều hoà</a>
+            <a href="#" class="list-group-item list-group-item-action">Tivi</a>
+            <a href="#" class="list-group-item list-group-item-action">Tủ lạnh</a>
+            <a href="#" class="list-group-item list-group-item-action">Điện gia dụng</a>
+            <a href="#" class="list-group-item list-group-item-action active" aria-current="true">Nhà cung cấp</a>
+            <a href="#" class="list-group-item list-group-item-action">Apple</a>
+            <a href="#" class="list-group-item list-group-item-action">Samsung</a>
+            <a href="#" class="list-group-item list-group-item-action">Nokia</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

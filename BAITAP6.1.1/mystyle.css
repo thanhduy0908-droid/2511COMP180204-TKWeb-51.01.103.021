@@ -1,0 +1,312 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.ocean {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url('img/09-20-23-821_512.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.bubble {
+  position: absolute;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  animation: rise 6s infinite ease-in;
+}
+
+.bubble:nth-child(1) {
+  left: 20%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 0s;
+}
+
+.bubble:nth-child(2) {
+  left: 40%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 1s;
+}
+
+.bubble:nth-child(3) {
+  left: 60%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 2s;
+}
+
+.bubble:nth-child(4) {
+  left: 80%;
+  width: 18px;
+  height: 18px;
+  animation-delay: 3s;
+}
+
+.bubble:nth-child(5) {
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  animation-delay: 4s;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-110vh) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.fish1 {
+  position: absolute;
+  animation: Driver1 4s linear infinite;
+  top: 20%;
+  animation-delay: 0s;
+}
+
+.fish2 {
+  position: absolute;
+  animation: Driver2 4s linear infinite;
+  top: 40%;
+  animation-delay: 0s;
+}
+
+.fish3 {
+  position: absolute;
+  animation: Driver3 4s linear infinite;
+  top: 60%;
+  animation-delay: 0s;
+}
+
+.fish4 {
+  position: absolute;
+  animation: Faint 5s linear infinite;
+  top: 70%;
+  animation-delay: 0s;
+}
+
+.fish5 {
+  position: absolute;
+  top: 80%;
+  animation: GoldFish 5s linear infinite;
+  animation-delay: 0s;
+}
+
+.fish6 {
+  position: absolute;
+  top: 30%;
+  animation: Shark 3s linear infinite;
+  animation-delay: 0s;
+  animation-duration: 3s;
+}
+
+.fish7 {
+  position: absolute;
+  top: 50%;
+  animation: Turtle 10s linear infinite;
+  animation-delay: 0s;
+  animation-duration: 10s;
+}
+
+@keyframes Driver1 {
+  0% {
+    left: -120px;
+    top: 400px;
+    transform: scaleX(1);
+  }
+
+  20% {
+    left: 500px;
+    top: 500px;
+    transform: scaleX(1);
+  }
+
+  50% {
+    left: 1100px;
+    top: 300px;
+    transform: scaleX(1)
+  }
+
+  50.1% {
+    transform: scaleX(-1);
+  }
+
+  100% {
+    left: -100px;
+    top: 400px;
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes Driver2 {
+  0% {
+    left: -120px;
+    top: 600px;
+    transform: scaleX(1);
+  }
+
+  20% {
+    left: 500px;
+    top: 400px;
+    transform: scaleX(1);
+  }
+
+  50% {
+    left: 1100px;
+    top: 100px;
+    transform: scaleX(1)
+  }
+
+  50.1% {
+    transform: scaleX(-1);
+  }
+
+  100% {
+    left: -100px;
+    top: 600px;
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes Driver3 {
+  0% {
+    left: -120px;
+    top: 200px;
+    transform: scaleX(1);
+  }
+
+  20% {
+    left: 500px;
+    top: 300px;
+    transform: scaleX(1);
+  }
+
+  50% {
+    left: 1100px;
+    top: 500px;
+    transform: scaleX(1)
+  }
+
+  50.1% {
+    transform: scaleX(-1);
+  }
+
+  100% {
+    left: -100px;
+    top: 200px;
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes Faint {
+  0% {
+    left: -200px;
+    transform: scaleX(1);
+  }
+
+  50% {
+    left: 1300px;
+    transform: scaleX(1);
+  }
+
+  50.1% {
+    transform: scaleX(-1);
+  }
+
+  100% {
+    left: -200px;
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes GoldFish {
+  0% {
+    left: -200px;
+    top: 300px;
+    transform: scaleX(1);
+  }
+
+  20% {
+    left: 500px;
+    top: 200px;
+    transform: scaleX(1);
+  }
+
+  50% {
+    left: 1300px;
+    top: 50px;
+    transform: scaleX(1)
+  }
+
+  50.1% {
+    transform: scaleX(-1);
+  }
+  75% {
+    left: 500px;
+    top: 400px;
+    transform: scaleX(-1);
+  }
+
+  100% {
+    left: -200px;
+    top: 300px;
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes Shark {
+  0% {
+    left: -300px;
+    top: 200px;
+    transform: scaleX(1);
+  }
+
+  50% {
+    left: 1300px;
+    top: 200px;
+    transform: scaleX(1)
+  }
+
+  50.1% {
+    transform: scaleX(-1);
+  }
+
+  100% {
+    left: -300px;
+    top: 400px;
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes Turtle {
+  0% {
+    left: -150px;
+    transform: scaleX(1);
+  }
+
+  50% {
+    left: 1300px;
+    transform: scaleX(1);
+  }
+
+  50.1% {
+    transform: scaleX(-1);
+  }
+
+  100% {
+    left: -150px;
+    transform: scaleX(-1);
+  }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sản phẩm</title>
+</head>
+
+<body>
+    <h1>Danh sách sản phẩm</h1>
+    <div id="products"></div>
+    <button onclick="add()">Add</button>
+    <button onclick="edit()">Edit</button>
+    <button onclick="xoa()">Delete</button>
+    <script>
+        var product_list = ['Iphone 14', 'Samsung galaxy A31', 'Redmi note 11', 'Oppo A16K', 'Nokia C20'];
+        function show_product() {
+            var s = "";
+            for (var i = 0; i < product_list.length; i++) {
+                s = s + (i + 1) + ". " + product_list[i] + "<br>";
+            }
+            return s;
+        }
+        function add() {
+            var spmoi = prompt("Nhap ten san pham moi: ");
+            product_list.push(spmoi);
+            document.getElementById("products").innerHTML = show_product();
+        }
+        function edit() {
+            var vitri = prompt("Nhap vi tri can sua: ");
+            var newname = prompt("Nhap ten san pham moi: ");
+            product_list[vitri - 1] = newname;
+            document.getElementById("products").innerHTML = show_product();
+        }
+        function xoa() {
+            var vitri = prompt("Nhap vi tri can xoa: ");
+            product_list.splice(vitri - 1, 1);
+            document.getElementById("products").innerHTML = show_product();
+        }
+        document.getElementById("products").innerHTML = show_product();
+
+
+    </script>
+
+
+</body>
+
+</html>
