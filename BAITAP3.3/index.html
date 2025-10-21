@@ -7,11 +7,9 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            width: 600px;
-            margin: 40px auto;
-            border: 1px solid #ccc;
+            margin: 0;
             padding: 20px;
-            border-radius: 10px;
+            background: white;
         }
 
         h2 {
@@ -56,12 +54,13 @@
         th {
             background-color: #f8f8f8;
         }
+
         tbody tr:nth-child(odd) {
             background-color: #ffffff;
         }
 
         tbody tr:nth-child(even) {
-            background-color: #b4adad;
+            background-color: #dbd9d9;
         }
 
         .action-btn {
@@ -95,7 +94,7 @@
     </table>
 
     <script>
-        var products =[
+        var products = [
             "Sony Xperia",
             "Samsung Galaxy",
             "Nokia 6",
@@ -122,7 +121,6 @@
                     "</tr>";
             }
             document.getElementById("count").innerText = products.length + " products";
-            localStorage.setItem("products", JSON.stringify(products));
         }
 
         function addProduct() {
