@@ -3,47 +3,157 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý sản phẩm</title>
+    <title>Product Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 600px;
+            margin: 40px auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin-left: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+            background-color: #555;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f8f8;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #b4adad;
+        }
+
+        .action-btn {
+            display: flex;
+            gap: 8px;
+        }
+
+        .right {
+            float: right;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Danh sách sản phẩm</h1>
-    <div id="products"></div>
-    <button onclick="add()">Add</button>
-    <button onclick="edit()">Edit</button>
-    <button onclick="xoa()">Delete</button>
+    <h2>Add New Product</h2>
+    <input type="text" id="newProduct" placeholder="New Product">
+    <button onclick="addProduct()">Add</button>
+
+    <h2>Display All Product <span class="right" id="count"></span></h2>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Product Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="productList"></tbody>
+    </table>
+
     <script>
-        var product_list = ['Iphone 14', 'Samsung galaxy A31', 'Redmi note 11', 'Oppo A16K', 'Nokia C20'];
-        function show_product() {
-            var s = "";
-            for (var i = 0; i < product_list.length; i++) {
-                s = s + (i + 1) + ". " + product_list[i] + "<br>";
+        var products =[
+            "Sony Xperia",
+            "Samsung Galaxy",
+            "Nokia 6",
+            "Xiaomi Redmi Note 4",
+            "Apple iPhone 6S",
+            "Xiaomi Mi 5s Plus",
+            "Apple iPhone 8 Plus",
+            "Fujitsu F-04E",
+            "Oppo A71"
+        ];
+
+        function displayProducts() {
+            var list = document.getElementById("productList");
+            list.innerHTML = "";
+            for (var i = 0; i < products.length; i++) {
+                list.innerHTML +=
+                    "<tr>" +
+                    "<td>" + (i + 1) + "</td>" +
+                    "<td>" + products[i] + "</td>" +
+                    "<td class='action-btn'>" +
+                    "<button onclick='editProduct(" + i + ")' style='background: #666'>Edit</button>" +
+                    "<button onclick='deleteProduct(" + i + ")' style='background: #d9534f'>Delete</button>" +
+                    "</td>" +
+                    "</tr>";
             }
-            return s;
+            document.getElementById("count").innerText = products.length + " products";
+            localStorage.setItem("products", JSON.stringify(products));
         }
-        function add() {
-            var spmoi = prompt("Nhap ten san pham moi: ");
-            product_list.push(spmoi);
-            document.getElementById("products").innerHTML = show_product();
-        }
-        function edit() {
-            var vitri = prompt("Nhap vi tri can sua: ");
-            var newname = prompt("Nhap ten san pham moi: ");
-            product_list[vitri - 1] = newname;
-            document.getElementById("products").innerHTML = show_product();
-        }
-        function xoa() {
-            var vitri = prompt("Nhap vi tri can xoa: ");
-            product_list.splice(vitri - 1, 1);
-            document.getElementById("products").innerHTML = show_product();
-        }
-        document.getElementById("products").innerHTML = show_product();
 
+        function addProduct() {
+            var input = document.getElementById("newProduct");
+            var name = input.value.trim();
+            if (name === "") {
+                alert("Please enter product name!");
+                return;
+            }
+            products.push(name);
+            input.value = "";
+            displayProducts();
+        }
 
+        function deleteProduct(index) {
+            if (confirm("Delete this product?")) {
+                products.splice(index, 1);
+                displayProducts();
+            }
+        }
+
+        function editProduct(index) {
+            var newName = prompt("Edit product name:", products[index]);
+            if (newName && newName.trim() !== "") {
+                products[index] = newName.trim();
+                displayProducts();
+            }
+        }
+
+        displayProducts();
     </script>
-
-
 </body>
 
 </html>
