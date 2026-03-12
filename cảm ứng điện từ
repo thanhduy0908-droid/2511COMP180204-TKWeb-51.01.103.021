@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bàn Tay Ma Thuật - Vật Lí 12</title>
+    <style>
+        :root { --primary: #2c3e50; --accent: #e67e22; --success: #27ae60; }
+        body { font-family: 'Arial', sans-serif; background: #ecf0f1; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        h1 { color: var(--primary); margin: 10px 0; text-align: center; }
+        .game-container { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); width: 90%; max-width: 700px; text-align: center; position: relative; overflow: hidden; }
+        
+        /* Hiệu ứng bình và bàn tay */
+        .jar-area { position: relative; height: 180px; margin: 20px 0; }
+        .jar { font-size: 80px; position: relative; z-index: 2; }
+        .hand { 
+            font-size: 50px; position: absolute; top: -100px; left: 50%; 
+            transform: translateX(-50%); z-index: 1; transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+        }
+        .hand.grabbing { top: 40px; transform: translateX(-50%) scale(1.2); z-index: 3; }
+
+        #student-tag { 
+            display: inline-block; padding: 10px 20px; background: var(--accent); 
+            color: white; border-radius: 50px; font-weight: bold; font-size: 20px;
+            margin: 15px 0; opacity: 0; transform: translateY(20px); transition: 0.4s;
+        }
+        #student-tag.show { opacity: 1; transform: translateY(0); }
+
+        /* Lưới câu hỏi */
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
+        .box { 
+            background: #3498db; color: white; padding: 15px; border-radius: 10px; 
+            cursor: pointer; font-weight: bold; transition: 0.3s; border-bottom: 4px solid #2980b9;
+        }
+        .box:hover { transform: translateY(-5px); background: #2980b9; }
+        .box.clicked { animation: popOut 0.5s forwards; }
+
+        @keyframes popOut {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); opacity: 0.5; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        button#pick-btn { 
+            background: var(--success); color: white; border: none; padding: 12px 30px; 
+            font-size: 18px; border-radius: 5px; cursor: pointer; box-shadow: 0 4px #1e8449;
+        }
+        button#pick-btn:active { box-shadow: none; transform: translateY(4px); }
+    </style>
+</head>
+<body>
+
+    <h1>Chủ đề: Hiện tượng cảm ứng điện từ</h1>
+    
+    <div class="game-container">
+        <div class="jar-area">
+            <div id="magic-hand" class="hand">🖐️</div>
+            <div class="jar">🏺</div>
+        </div>
+
+        <button id="pick-btn" onclick="startGrabbing()">Bốc thăm học sinh (Sĩ số: 36)</button>
+        <br>
+        <div id="student-tag">Học sinh số: --</div>
+
+        <div class="grid" id="question-grid">
+            </div>
+    </div>
+
+    <script>
+        const questions = [
+            "Định luật Lenz dùng để làm gì?", "Công thức từ thông qua diện tích S?",
+            "Suất điện động cảm ứng là gì?", "Dòng điện Foucault có lợi hay hại?",
+            "Nêu điều kiện để có dòng điện cảm ứng?", "Đơn vị của Từ thông là gì?",
+            "Hiện tượng tự cảm là gì?", "Năng lượng từ trường tập trung ở đâu?",
+            "Giải bài tập: Tính Delta Phi trong 2s", "Vẽ chiều dòng điện cảm ứng trong vòng dây",
+            "Công thức tính độ tự cảm của ống dây?", "Tại sao khi ngắt mạch lại có tia lửa điện?"
+        ];
+
+        // Khởi tạo lưới câu hỏi ban đầu
+        const grid = document.getElementById('question-grid');
+        for (let i = 1; i <= 12; i++) {
+            createBox(i);
+        }
+
+        function createBox(index) {
+            const box = document.createElement('div');
+            box.className = 'box';
+            box.innerText = 'Số ' + index;
+            box.onclick = function() { 
+                const q = questions[Math.floor(Math.random() * questions.length)];
+                alert("CÂU HỎI CỦA BẠN: \n" + q);
+                
+                // Hiệu ứng biến mất và thay câu mới
+                this.classList.add('clicked');
+                setTimeout(() => {
+                    this.classList.remove('clicked');
+                    this.innerText = 'Số ' + (Math.floor(Math.random() * 100) + 13); // Thay bằng số ngẫu nhiên mới
+                }, 600);
+            };
+            grid.appendChild(box);
+        }
+
+        function startGrabbing() {
+            const hand = document.getElementById('magic-hand');
+            const tag = document.getElementById('student-tag');
+            const btn = document.getElementById('pick-btn');
+            
+            btn.disabled = true;
+            hand.classList.add('grabbing');
+            tag.classList.remove('show');
+
+            setTimeout(() => {
+                hand.classList.remove('grabbing');
+                const luckyStudent = Math.floor(Math.random() * 36) + 1;
+                tag.innerText = "Học sinh số: " + luckyStudent + " lên bảng!";
+                tag.classList.add('show');
+                btn.disabled = false;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
