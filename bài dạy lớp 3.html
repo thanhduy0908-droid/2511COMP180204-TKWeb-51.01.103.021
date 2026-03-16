@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bốc Thăm & Kéo Thả - Toán Lớp 3</title>
+    <style>
+        :root {
+            --yellow: #FFD700;
+            --green: #4CAF50;
+            --white: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f9fdf9;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #game-box {
+            width: 850px;
+            height: 600px;
+            background: var(--white);
+            border: 10px solid var(--green);
+            border-radius: 30px;
+            position: relative;
+            box-shadow: 0 15px 35px var(--shadow);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Screens */
+        .screen {
+            display: none;
+            height: 100%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            color: var(--green);
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px var(--yellow);
+        }
+
+        .btn {
+            background: var(--yellow);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin: 10px;
+            color: #333;
+            box-shadow: 0 5px 0 #ccac00;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: #ffea00;
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+        /* Lottery Bottle */
+        #bottle {
+            width: 200px;
+            height: 250px;
+            background: #e3f2fd;
+            border: 5px solid #2196F3;
+            border-radius: 20px 20px 80px 80px;
+            position: relative;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            font-weight: bold;
+            color: #2196F3;
+        }
+
+        .shake {
+            animation: shake-anim 0.5s infinite;
+        }
+
+        @keyframes shake-anim {
+            0% {
+                transform: rotate(0);
+            }
+
+            25% {
+                transform: rotate(10deg);
+            }
+
+            75% {
+                transform: rotate(-10deg);
+            }
+        }
+
+        /* Quiz UI */
+        .progress-container {
+            width: 80%;
+            background: #eee;
+            height: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        #progress-fill {
+            height: 100%;
+            background: var(--green);
+            width: 0%;
+            transition: 0.3s;
+        }
+
+        .equation {
+            font-size: 4rem;
+            font-weight: bold;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin: 30px 0;
+        }
+
+        .drop-zone {
+            width: 100px;
+            height: 100px;
+            border: 4px dashed var(--green);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0fff0;
+        }
+
+        .options-list {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .drag-item {
+            width: 80px;
+            height: 80px;
+            background: var(--yellow);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            cursor: grab;
+            font-weight: bold;
+        }
+
+        /* Feedback Effects */
+        .feedback-msg {
+            font-size: 1.8rem;
+            font-weight: bold;
+            min-height: 40px;
+            margin-top: 10px;
+        }
+
+        .correct-anim {
+            color: var(--green);
+            animation: pop 0.5s;
+        }
+
+        .wrong-anim {
+            color: #f44336;
+            animation: shake-x 0.5s;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes shake-x {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="game-box">
+        <div id="screen-home" class="screen active">
+            <h1>BỐC THĂM - KÉO THẢ</h1>
+            <button class="btn" onclick="showScreen('screen-lottery')">Bắt đầu chơi</button>
+            <button class="btn" onclick="showScreen('screen-guide')">Cách chơi</button>
+        </div>
+
+        <div id="screen-guide" class="screen">
+            <h2>CÁCH CHƠI</h2>
+            <p style="font-size: 1.3rem; text-align: left; padding: 0 40px;">
+                1. Cô/Thầy ấn nút quay "Lọ may mắn" để chọn 1 bạn mã số từ 1-36.<br>
+                2. Bạn được chọn sẽ giúp Cô/Thầy kéo số hoặc dấu đúng vào ô trống.<br>
+                3. Trải qua 12 câu hỏi để nhận phần quà bất ngờ!
+            </p>
+            <button class="btn" onclick="showScreen('screen-home')">Đã rõ!</button>
+        </div>
+
+        <div id="screen-lottery" class="screen">
+            <div id="bottle">?</div>
+            <h2 id="lottery-text">Mã số may mắn là ai?</h2>
+            <button id="spin-btn" class="btn" onclick="startLottery()">Quay ngay!</button>
+            <button id="start-quiz-btn" class="btn" style="display:none" onclick="startQuiz()">Lên bảng thôi
+                nào!</button>
+        </div>
+
+        <div id="screen-quiz" class="screen">
+            <div class="progress-container">
+                <div id="progress-fill"></div>
+            </div>
+            <div id="round-info" style="color: var(--green); font-weight: bold;">Vòng 1 - Làm quen</div>
+            <div class="equation" id="quiz-area"></div>
+            <div class="options-list" id="options-area"></div>
+            <div id="feedback" class="feedback-msg"></div>
+            <button id="next-btn" class="btn" style="display:none" onclick="nextQuestion()">Câu tiếp theo</button>
+        </div>
+
+        <div id="screen-result" class="screen">
+            <h1>XUẤT SẮC! 🎉</h1>
+            <p style="font-size: 2rem;">Chúc mừng mã số <span id="winner-id"></span> đã hoàn thành bài thi!</p>
+            <p id="final-score" style="font-size: 1.5rem;"></p>
+            <button class="btn" onclick="location.reload()">Chơi lại</button>
+        </div>
+    </div>
+
+    <script>
+        const totalStudents = 36;
+        let selectedStudent = 0;
+        let currentQ = 0;
+        let score = 0;
+
+        const questions = [
+            // Vòng 1 (8 câu)
+            { text: ["15", "+", "5", "=", ""], ans: "20", opts: ["10", "20", "25"] },
+            { text: ["8", "x", "4", "=", ""], ans: "32", opts: ["12", "30", "32"] },
+            { text: ["40", "", "8", "=", "5"], ans: "÷", opts: ["-", "+", "÷"] },
+            { text: ["100", "-", "20", "=", ""], ans: "80", opts: ["70", "80", "90"] },
+            { text: ["", "x", "3", "=", "27"], ans: "9", opts: ["8", "9", "7"] },
+            { text: ["21", "÷", "3", "=", ""], ans: "7", opts: ["6", "7", "8"] },
+            { text: ["50", "+", "", "=", "100"], ans: "50", opts: ["40", "50", "60"] },
+            { text: ["12", "", "2", "=", "24"], ans: "x", opts: ["+", "x", "÷"] },
+            // Vòng 2 (4 câu)
+            { text: ["(10 + 2)", "÷", "", "=", "4"], ans: "3", opts: ["3", "4", "2"] },
+            { text: ["5 x 2", "+", "10", "=", ""], ans: "20", opts: ["15", "20", "25"] },
+            { text: ["", "÷", "2", "=", "10 - 2"], ans: "16", opts: ["16", "8", "4"] },
+            { text: ["25", "-", "", "=", "5 x 3"], ans: "10", opts: ["5", "10", "15"] }
+        ];
+
+        function showScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        function startLottery() {
+            const bottle = document.getElementById('bottle');
+            const spinBtn = document.getElementById('spin-btn');
+            bottle.classList.add('shake');
+
+            let count = 0;
+            let timer = setInterval(() => {
+                bottle.innerText = Math.floor(Math.random() * totalStudents) + 1;
+                count++;
+                if (count > 20) {
+                    clearInterval(timer);
+                    bottle.classList.remove('shake');
+                    selectedStudent = bottle.innerText;
+                    document.getElementById('lottery-text').innerText = "Chào bạn số: " + selectedStudent + "!";
+                    spinBtn.style.display = 'none';
+                    document.getElementById('start-quiz-btn').style.display = 'inline-block';
+                }
+            }, 100);
+        }
+
+        function startQuiz() {
+            showScreen('screen-quiz');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const q = questions[currentQ];
+            const area = document.getElementById('quiz-area');
+            const opts = document.getElementById('options-area');
+            const feedback = document.getElementById('feedback');
+            document.getElementById('next-btn').style.display = 'none';
+            feedback.innerText = "";
+
+            // Cập nhật tiến độ
+            document.getElementById('progress-fill').style.width = ((currentQ + 1) / 12 * 100) + "%";
+            document.getElementById('round-info').innerText = currentQ < 8 ? "Vòng 1 - Làm quen" : "Vòng 2 - Nâng cao";
+
+            area.innerHTML = "";
+            q.text.forEach(p => {
+                if (p === "") area.innerHTML += `<div class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)">?</div>`;
+                else area.innerHTML += `<span>${p}</span>`;
+            });
+
+            opts.innerHTML = "";
+            q.opts.forEach(o => {
+                opts.innerHTML += `<div class="drag-item" draggable="true" ondragstart="drag(event)" id="o-${o}">${o}</div>`;
+            });
+        }
+
+        function drag(ev) { ev.dataTransfer.setData("text", ev.target.innerText); }
+        function allowDrop(ev) { ev.preventDefault(); }
+
+        function drop(ev) {
+            ev.preventDefault();
+            const data = ev.dataTransfer.getData("text");
+            const q = questions[currentQ];
+            const feedback = document.getElementById('feedback');
+
+            if (data === q.ans) {
+                ev.target.innerText = data;
+                ev.target.style.background = "#d4edda";
+                ev.target.style.border = "4px solid var(--green)";
+                feedback.innerText = "Tuyệt vời! Ting ting! 🌟";
+                feedback.className = "feedback-msg correct-anim";
+                score += 10;
+                document.getElementById('next-btn').style.display = 'inline-block';
+            } else {
+                feedback.innerText = "Oops! Sai một chút rồi, thử lại nhé! 🌸";
+                feedback.className = "feedback-msg wrong-anim";
+                setTimeout(() => { feedback.classList.remove('wrong-anim'); }, 500);
+            }
+        }
+
+        function nextQuestion() {
+            currentQ++;
+            if (currentQ < questions.length) {
+                loadQuestion();
+            } else {
+                showScreen('screen-result');
+                document.getElementById('winner-id').innerText = selectedStudent;
+                document.getElementById('final-score').innerText = "Số điểm đạt được: " + score + " / 120";
+            }
+        }
+    </script>
+</body>
+
+</html>
